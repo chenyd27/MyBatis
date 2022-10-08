@@ -4,21 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!--core configuration-->
 <configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"/>
+    <!--类型别名-->
+    <typeAliases>
+        <package name="com.kuang.pojo"/>
+    </typeAliases>
     <!--多环境-->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="driver" value="${driver}"/>
                 <!--链接数据库以及配置数据库设置-->
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;"/>
-                <property name="username" value="root"/>
-                <property name="password" value="ccbysq520"/>
+                <property name="url" value="${url1}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
     <!--每一个mapper.xml 都需要在mybatis核心配置文件中注册-->
     <mappers>
-        <mapper resource="com/kuang/dao/userMapper.xml"/>
+        <mapper class="com.kuang.dao.UserMapper"/>
     </mappers>
 </configuration>

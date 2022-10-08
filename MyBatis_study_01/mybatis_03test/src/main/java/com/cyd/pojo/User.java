@@ -1,18 +1,17 @@
-package com.kuang.pojo;
+package com.cyd.pojo;
 
 import org.apache.ibatis.type.Alias;
 
-// 实体类
 @Alias("User")
 public class User {
-    private int id;
-    private String name;
-    private String pwd;
+    int id;
+    String name;
+    String password;
     public User(){}
     public User(int id,String name,String pwd){
         this.id = id;
         this.name = name;
-        this.pwd = pwd;
+        this.password = pwd;
     }
 
     public int getId() {
@@ -32,10 +31,10 @@ public class User {
     }
 
     public String getPwd() {
-        return pwd;
+        return password;
     }
 
     public void setPwd(String pwd) {
-        this.pwd = pwd;
+        this.password = pwd;
     }
 }
