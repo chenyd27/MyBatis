@@ -28,7 +28,7 @@ public class UserMapperTest {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user = userMapper.getOneUser(2);
-        System.out.println(user.getPwd());
+        System.out.println(user.getPassword());
         sqlSession.close();
     }
 @Test
@@ -40,7 +40,7 @@ public class UserMapperTest {
         map.put("pageSize",3);
         List<User> arr = userMapper.getUserListLimit(map);
         for(User user: arr){
-            System.out.println(user.getId() + '\t' + user.getName() + '\t' + user.getPwd());
+            System.out.println(user.getId() + '\t' + user.getName() + '\t' + user.getPassword());
         }
         sqlSession.close();
     }
