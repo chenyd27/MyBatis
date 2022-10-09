@@ -45,15 +45,11 @@ public class UserMapperTest {
         sqlSession.close();
     }
     @Test
-    public void getRowBounds(){
+    public void getUserOneTest1(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        // rowbounds 实现
-        RowBounds rowBounds = new RowBounds(1,2);
-        // 通过java 代码实现分页
-        List<User> arr = sqlSession.selectList("com.cyd.mapper.UserMapper.getUserListRowBounds",null,rowBounds);
-        for(User user: arr){
-            System.out.println(user.getId() + '\t' + user.getName() + '\t' + user.getPwd());
-        }
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User(5,"cyd","15919173221");
+        userMapper.addUser(user);
         sqlSession.close();
     }
 }

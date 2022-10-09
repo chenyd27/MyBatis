@@ -13,7 +13,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mybatis_01" target="18" />
-      <module name="mybatis_test" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>
