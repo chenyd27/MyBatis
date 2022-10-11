@@ -23,18 +23,29 @@ public class BlogTest {
         blogMapper.addBook(blog2);
         sqlSession.close();
     }
-    // @Test
+    @Test
     public void getBlogListIF(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
         HashMap map = new HashMap<>();
         // map.put("title","Hallo world");
-        map.put("title","hallo info2");
-        map.put("views","9999");
-        blogMapper.updateBlog(map);
+        List<Blog> arr = blogMapper.queryBlogIF(map);
+        for(Blog b : arr){
+            System.out.println(b);
+        }
         sqlSession.close();
+
+        System.out.println("-------------------");
+        SqlSession sqlSession2 = MybatisUtils.getSqlSession();
+        BlogMapper blogMapper2 = sqlSession2.getMapper(BlogMapper.class);
+        HashMap map2 = new HashMap<>();
+        List<Blog> arr1 = blogMapper2.queryBlogIF(map2);
+        for(Blog b : arr1){
+            System.out.println(b);
+        }
+        sqlSession2.close();
     }
-    @Test
+    // @Test
     public void queryBlogForeach(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
