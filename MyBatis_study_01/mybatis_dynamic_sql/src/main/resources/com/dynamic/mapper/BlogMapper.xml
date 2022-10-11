@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--User 配置文件-->
+<!--namespace = 绑定一个对应的mapper / dao 接口
+    实现接口
+-->
+<mapper namespace="com.dynamic.mapper.BlogMapper">
+    <insert id="addBook" parameterType="Blog">
+        insert into mybatis.blog (id,title,author,create_time,views)
+        values (#{id},#{title},#{author},#{createTime},#{views});
+    </insert>
+
+    <sql id="if-title-author">
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </sql>
+    
+    <select id="queryBlogIF" parameterType="map" resultType="Blog">
+        select * from mybatis.blog
+        <where>
+            <include refid="if-title-author"></include>
+        </where>
+    </select>
+
+    <select id="queryBlogChoose" parameterType="Map" resultType="Blog">
+        select * from blog
+        <where>
+            <choose>
+                <when test="title != null">
+                    and title = #{title}
+                </when>
+                <when test="author != null">
+                    and author = #{author}
+                </when>
+                <otherwise>
+                    and views = #{views}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <update id="updateBlog" parameterType="Map">
+        update mybatis.blog
+        <set>
+            <if test="title != null">
+                title = #{title}
+            </if>
+            <if test="author != null">
+                author = #{author}
+            </if>
+        </set>
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="views != null">
+                and views = #{views};
+            </if>
+        </where>
+        <trim prefix="where" prefixOverrides="and">
+        </trim>
+    </update>
+
+    <!--map 中存在一个 集合-->
+    <select id="queryBlogForeach" parameterType="Map" resultType="Blog">
+        select * from blog
+        <where>
+            <foreach collection="ids" item="id" open="and (" close=")" separator="or">
+                id = #{id}
+            </foreach>
+        </where>
+    </select>
+</mapper>

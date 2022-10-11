@@ -12,6 +12,7 @@
         <module>mybatis_02</module>
         <module>mybatis_03test</module>
         <module>mybatis_teacher_student</module>
+        <module>mybatis_dynamic_sql</module>
     </modules>
 
 

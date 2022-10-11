@@ -10,6 +10,7 @@
         <module name="mybatis_02" />
         <module name="mybatis_test" />
         <module name="mybatis_03test" />
+        <module name="mybatis_dynamic_sql" />
         <module name="mybatis_teacher_student" />
       </profile>
     </annotationProcessing>
